@@ -6,69 +6,108 @@
     <title>Fraud Transaction Detection</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.85), rgba(50, 10, 10, 0.85)), 
+                        url('/static/cyber.jpg') no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
+            color: #ffffff;
         }
         header {
-            background-color: #4CAF50;
+            background: linear-gradient(90deg, #8B0000, #B22222);
             color: white;
             text-align: center;
-            padding: 1em 0;
+            padding: 1.5em 0;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        header img {
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            width: 50px;
+            height: auto;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
         }
         .container {
-            max-width: 600px;
+            max-width: 650px;
             margin: 50px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: rgba(139, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
         }
         .input-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         .input-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: bold;
+            color: #ffcccc;
         }
         .input-group input, .input-group select {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 12px;
+            border: 2px solid #ff6666;
+            border-radius: 8px;
             box-sizing: border-box;
+            font-size: 16px;
+            background: #2a1a1a;
+            color: #ffffff;
+        }
+        .input-group input::placeholder, .input-group select::placeholder {
+            color: #b0bec5;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: #ff4d4d;
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 77, 77, 0.7);
         }
         button {
-            background-color: #4CAF50;
+            background: linear-gradient(90deg, #B22222, #FF6347);
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 14px 20px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            transition: background 0.3s ease;
+            width: 100%;
         }
         button:hover {
-            background-color: #45a049;
+            background: linear-gradient(90deg, #FF6347, #B22222);
         }
         .result {
             text-align: center;
             margin-top: 20px;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
+            color: #ff9999;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            color: #cccccc;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
     <header>
+        <img src="/static/fraud.png" alt="Logo">
         <h1>Fraud Transaction Detection</h1>
     </header>
     <div class="container">
         <form id="fraudDetectionForm" method="POST" action="/templates/result.html">
             <div class="input-group">
                 <label for="amount">Transaction Amount</label>
-                <input type="number" id="amount" name="amount" required>
+                <input type="number" id="amount" name="amount" placeholder="Enter transaction amount" required>
             </div>
             <div class="input-group">
                 <label for="type">Transaction Type</label>
@@ -82,27 +121,34 @@
                 </select>
             </div>
             <div class="input-group">
-                <label for="old_bal_org">Old Balance (Origin)</label>
-                <input type="number" id="old_bal_org" name="old_bal_org" required>
+                <label for="oldbalanceOrg">Old Balance (Origin)</label>
+                <input type="number" id="oldbalanceOrg" name="oldbalanceOrg" placeholder="Enter old balance of origin account" required>
             </div>
             <div class="input-group">
-                <label for="new_bal_org">New Balance (Origin)</label>
-                <input type="number" id="new_bal_org" name="new_bal_org" required>
+                <label for="newbalanceOrig">New Balance (Origin)</label>
+                <input type="number" id="newbalanceOrig" name="newbalanceOrig" placeholder="Enter new balance of origin account" required>
             </div>
             <div class="input-group">
-                <label for="old_bal_dest">Old Balance (Destination)</label>
-                <input type="number" id="old_bal_dest" name="old_bal_dest" required>
+                <label for="oldbalanceDest">Old Balance (Destination)</label>
+                <input type="number" id="oldbalanceDest" name="oldbalanceDest" placeholder="Enter old balance of destination account" required>
             </div>
             <div class="input-group">
-                <label for="new_bal_dest">New Balance (Destination)</label>
-                <input type="number" id="new_bal_dest" name="new_bal_dest" required>
+                <label for="newbalanceDest">New Balance (Destination)</label>
+                <input type="number" id="newbalanceDest" name="newbalanceDest" placeholder="Enter new balance of destination account" required>
+            </div>
+            <div class="input-group">
+                <label for="step_days">Step Days</label>
+                <input type="number" id="step_days" name="step_days" placeholder="Enter the step days" required>
             </div>
             <button type="submit">Submit</button>
         </form>
     </div>
-
+    
     <div class="result" id="resultContainer">
         <!-- Result will be displayed here -->
     </div>
+    <footer>
+        © 2025 Fraud Detection ICT. All rights reserved.
+    </footer>
 </body>
 </html>
